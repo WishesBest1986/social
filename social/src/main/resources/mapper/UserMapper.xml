@@ -1,5 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="USER">
+    <resultMap id="BaseResultMap" type="edu.swu.social.business.passport.entity.User">
+        <id column="id" jdbcType="INTEGER" property="id" />
+        <result column="name" jdbcType="VARCHAR" property="name" />
+    </resultMap>
 
+    <insert id="insert" parameterType="edu.swu.social.business.passport.entity.User">
+        insert into USER (name)
+        VALUES (#{name, jdbcType=VARCHAR})
+    </insert>
+
+    <select id="select" resultMap="BaseResultMap">
+        select id, name
+        from user
+    </select>
 </mapper>

@@ -62,7 +62,7 @@
        <bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate">
               <constructor-arg index="0" ref="sqlSessionFactory" />
        </bean>
-       <bean id="baseDao" class="edu.swu.social.framework.orm.mybatis.BaseDao">
+       <bean id="baseDao" class="edu.swu.social.framework.orm.mybatis.BaseDaoImpl">
               <property name="sqlSessionTemplate" ref="sqlSession" />
        </bean>
 
