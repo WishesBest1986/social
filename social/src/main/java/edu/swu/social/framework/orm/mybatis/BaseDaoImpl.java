@@ -1,6 +1,7 @@
 package edu.swu.social.framework.orm.mybatis;
 
 import edu.swu.social.utils.ReflectionUtils;
+import org.apache.commons.lang.StringUtils;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.mybatis.spring.support.SqlSessionDaoSupport;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,9 +19,9 @@ public class BaseDaoImpl<T, PK extends Serializable> extends SqlSessionDaoSuppor
     public static final String SQLID_DELETE = "deleteByPrimaryKey";
     public static final String SQLID_SELECT = "selectByPrimaryKey";
 
-    private String basePackage = "";
-    private String mapperSuffix = "";
-    private String sqlNameSpace = "";
+    protected String basePackage = "edu.swu.social.mapper";
+    protected String mapperSuffix = "Mapper";
+    protected String sqlNameSpace = "";
 
     @Autowired
     @Override
@@ -28,24 +29,12 @@ public class BaseDaoImpl<T, PK extends Serializable> extends SqlSessionDaoSuppor
         super.setSqlSessionTemplate(sqlSessionTemplate);
     }
 
-    public void setBasePackage(String basePackage) {
-        this.basePackage = basePackage;
-    }
-
-    public void setMapperSuffix(String mapperSuffix) {
-        this.mapperSuffix = mapperSuffix;
-    }
-
-    public void setSqlNameSpace(String sqlNameSpace) {
-        this.sqlNameSpace = sqlNameSpace;
-    }
-
     public BaseDaoImpl() {
         sqlNameSpace = ReflectionUtils.getSuperClassGenericType(getClass()).getSimpleName();
     }
 
     private String statementName(String sqlId) {
-        return basePackage + "." + sqlNameSpace + mapperSuffix + "." + sqlId;
+        return (StringUtils.isNotBlank(basePackage) ? basePackage + "." : "") + sqlNameSpace + mapperSuffix + "." + sqlId;
     }
 
     @Override

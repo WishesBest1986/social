@@ -62,10 +62,6 @@
        <bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate">
               <constructor-arg index="0" ref="sqlSessionFactory" />
        </bean>
-       <bean id="baseDao" class="edu.swu.social.framework.orm.mybatis.BaseDaoImpl">
-              <property name="basePackage" value="edu.swu.social.mapper" />
-              <property name="mapperSuffix" value="Mapper" />
-       </bean>
 
        <bean name="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
               <property name="dataSource" ref="dataSource" />
