@@ -1,5 +1,7 @@
 package edu.swu.social.framework.orm.mybatis;
 
+import com.github.miemiedev.mybatis.paginator.domain.PageBounds;
+import com.github.miemiedev.mybatis.paginator.domain.PageList;
 import edu.swu.social.utils.ReflectionUtils;
 import org.apache.commons.lang.StringUtils;
 import org.mybatis.spring.SqlSessionTemplate;
@@ -7,6 +9,7 @@ import org.mybatis.spring.support.SqlSessionDaoSupport;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.io.Serializable;
+import java.util.List;
 
 /**
  * Created by neusoft on 15-6-1.
@@ -18,6 +21,8 @@ public class BaseDaoImpl<T, PK extends Serializable> extends SqlSessionDaoSuppor
     public static final String SQLID_UPDATE_SELECTIVE = "updateByPrimaryKeySelective";
     public static final String SQLID_DELETE = "deleteByPrimaryKey";
     public static final String SQLID_SELECT = "selectByPrimaryKey";
+    public static final String SQLID_SELECT_ALL = "selectAll";
+    public static final String SQLID_SELECT_SELECTIVE = "selectSelective";
 
     protected String basePackage = "edu.swu.social.mapper";
     protected String mapperSuffix = "Mapper";
@@ -65,5 +70,25 @@ public class BaseDaoImpl<T, PK extends Serializable> extends SqlSessionDaoSuppor
     @Override
     public T selectByPrimaryKey(PK key) {
         return getSqlSession().selectOne(statementName(SQLID_SELECT), key);
+    }
+
+    @Override
+    public List<T> selectAll() {
+        return getSqlSession().selectList(statementName(SQLID_SELECT_ALL));
+    }
+
+    @Override
+    public List<T> selectSelective(T entity) {
+        return getSqlSession().selectList(statementName(SQLID_SELECT_SELECTIVE), entity);
+    }
+
+    @Override
+    public PageList<T> selectAllByPage(PageBounds pageBounds) {
+        return (PageList<T>) getSqlSession().selectList(statementName(SQLID_SELECT_ALL), null, pageBounds);
+    }
+
+    @Override
+    public PageList<T> selectSelectiveByPage(T entity, PageBounds pageBounds) {
+        return (PageList<T>) getSqlSession().selectList(statementName(SQLID_SELECT_SELECTIVE), entity, pageBounds);
     }
 }
