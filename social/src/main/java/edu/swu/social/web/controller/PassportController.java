@@ -1,7 +1,7 @@
 package edu.swu.social.web.controller;
 
-import edu.swu.social.business.passport.entity.User;
-import edu.swu.social.business.passport.service.UserService;
+import edu.swu.social.business.entity.User;
+import edu.swu.social.business.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,11 +19,12 @@ public class PassportController {
 
     @RequestMapping(value = "login")
     public String login() {
-        User user = new User();
-        user.setName("张三");
-
-        userService.insert(user);
-        List<User> lists = userService.list();
+//        User user = new User();
+//        user.setName("张三");
+//
+//        userService.insert(user);
+//        List<User> lists = userService.list();
+        User user = userService.select();
 
         return "passport/login";
     }
