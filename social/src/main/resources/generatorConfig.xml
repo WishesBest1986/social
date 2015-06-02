@@ -28,7 +28,7 @@
             <!-- 从数据库返回的值被清理前后的空格 -->
             <property name="trimStrings" value="true" />
 
-            <!--<property name="rootClass" value="" />-->
+            <property name="rootClass" value="edu.swu.social.business.entity.BaseEntity" />
         </javaModelGenerator>
 
         <sqlMapGenerator targetPackage="edu.swu.social.mapper" targetProject="MAVEN">

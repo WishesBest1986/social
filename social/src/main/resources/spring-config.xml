@@ -64,6 +64,11 @@
               <constructor-arg index="0" ref="sqlSessionFactory" />
        </bean>
 
+       <bean id="ehcacheManager" class="org.springframework.cache.ehcache.EhCacheManagerFactoryBean">
+              <property name="configLocation" value="classpath:ehcache/ehcache.xml" />
+       </bean>
+
+
        <bean name="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
               <property name="dataSource" ref="dataSource" />
        </bean>

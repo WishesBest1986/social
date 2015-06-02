@@ -8,8 +8,7 @@
     <name>social</name>
 
     <properties>
-        <spring.version>4.1.1.RELEASE</spring.version>
-        <spring.version>4.1.1.RELEASE</spring.version>
+        <spring.version>4.1.6.RELEASE</spring.version>
         <slf4j.version>1.7.2</slf4j.version>
         <jackson.version>2.1.0</jackson.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -30,6 +29,11 @@
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-context</artifactId>
+            <version>${spring.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-context-support</artifactId>
             <version>${spring.version}</version>
         </dependency>
         <dependency>
@@ -95,6 +99,22 @@
             <version>1.2.17</version>
         </dependency>
         <!-- MybatisPaginator end -->
+
+        <!-- Ehcache begin -->
+        <dependency>
+            <groupId>net.sf.ehcache</groupId>
+            <artifactId>ehcache-core</artifactId>
+            <version>2.6.11</version>
+        </dependency>
+        <!-- Ehcache end -->
+
+        <!-- MybatisEhcache begin -->
+        <dependency>
+            <groupId>org.mybatis</groupId>
+            <artifactId>mybatis-ehcache</artifactId>
+            <version>1.0.0</version>
+        </dependency>
+        <!-- MybatisEhcache end -->
 
         <!-- DB begin -->
         <dependency>

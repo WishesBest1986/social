@@ -16,7 +16,7 @@ public class PassportController {
 
     @RequestMapping(value = "login")
     public String login() {
-       return "passport/login";
+        return "passport/login";
     }
 
 }
