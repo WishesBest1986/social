@@ -91,4 +91,14 @@ public class BaseDaoImpl<T, PK extends Serializable> extends SqlSessionDaoSuppor
     public PageList<T> selectSelectiveByPage(T entity, PageBounds pageBounds) {
         return (PageList<T>) getSqlSession().selectList(statementName(SQLID_SELECT_SELECTIVE), entity, pageBounds);
     }
+
+    @Override
+    public List<Object> selectCondition(String selectId, Object obj) {
+        return getSqlSession().selectList(statementName(selectId), obj);
+    }
+
+    @Override
+    public PageList<Object> selectConditionByPage(String selectId, Object obj, PageBounds pageBounds) {
+        return (PageList<Object>) getSqlSession().selectList(statementName(selectId), obj, pageBounds);
+    }
 }

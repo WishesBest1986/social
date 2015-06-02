@@ -20,4 +20,6 @@ public interface IBaseDao<T, PK extends Serializable> {
     public abstract List<T> selectSelective(T entity);
     public abstract PageList<T> selectAllByPage(PageBounds pageBounds);
     public abstract PageList<T> selectSelectiveByPage(T entity, PageBounds pageBounds);
+    public abstract List<Object> selectCondition(String selectId, Object obj);
+    public abstract PageList<Object> selectConditionByPage(String selectId, Object obj, PageBounds pageBounds);
 }
